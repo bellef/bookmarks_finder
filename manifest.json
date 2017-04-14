@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "Getting started example",
+  "description": "This extension shows a Google Image search result for the current page",
+  "version": "1.0",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.fr/*"],
+      // "css": ["mystyles.css"],
+      "js": ["jquery.min.js", "myscript.js"]
+    }
+  ],
+  "permissions": [
+    "tabs", "https://www.google.fr/*"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "bookmarks"
+  ]
+}
