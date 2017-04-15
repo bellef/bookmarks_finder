@@ -12,7 +12,11 @@
     {
       "matches": ["https://www.google.fr/*"],
       // "css": ["mystyles.css"],
-      "js": ["jquery.min.js", "myscript.js"]
+      "js": [
+        "jquery.min.js",
+        "jquery.ba-throttle-debounce.min.js", // https://github.com/cowboy/jquery-throttle-debounce
+        "myscript.js"
+      ]
     }
   ],
   "permissions": [

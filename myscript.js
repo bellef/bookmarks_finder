@@ -1,14 +1,34 @@
-$(document).ready(function() {
-  chrome.runtime.sendMessage({bookmarks: "all"}, function(bookmarks) {
+// Ask background script to query on bookmarks
+function queryBookmarks() {
+  var query = $("#lst-ib").val();
+  console.log("Querying " + query)
 
-    title = bookmarks[50]['title'];
-    url = bookmarks[50]['url'];
+  chrome.runtime.sendMessage({bookmarks: query}, function(bookmarks) {
+    var htmlToInsert = "<div id='bm-res'>";
 
-    htmlToInsert = "<div class='bm-res'>" +
-                   "<a href='" + url + "'>" + title + "</a>" +
-                   "</div>"
+    bookmarks.forEach(function(bookmark) {
+      var title = bookmark['title'];
+      var url = bookmark['url'];
 
+      htmlToInsert += "<ul class='bm'>" +
+                      "<li><a href='" + url + "'>" + title + "</a></li>" +
+                      "</ul>"
+    });
+    htmlToInsert += "</div>";
+
+    if ($('#bm-res').length)
+      $('#bm-res').remove();
     $("#res").before(htmlToInsert);
-    ;
   });
+}
+
+// DOM is ready
+$(document).ready(function() {
+  $("#lst-ib").on(
+    "keyup input",
+    $.debounce(
+      300,
+      queryBookmarks
+    )
+  );
 });

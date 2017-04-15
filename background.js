@@ -1,7 +1,4 @@
-// Copyright (c) 2014 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
+var query = null;
 /**
  * Get the current URL.
  *
@@ -41,11 +38,13 @@ function getCurrentTabUrl(callback) {
 // Returns an array of bookmarks
 // By recursively parsing bookmark nodes
 // And ignoring folder nodes
+// TODO: Concat if parent node (folder) contains query
 function flatten(xs) {
   return xs.reduce((acc, x) => {
-    if (x['url'] !== undefined) {
+    // If url is defined and url or title matches the query -> concat
+    if (x['url'] !== undefined &&
+        (query.test(x['url']) || query.test(x['title'])))
       acc = acc.concat(x);
-    }
     if (x.children) {
       acc = acc.concat(flatten(x.children));
       x.children = [];
@@ -55,15 +54,26 @@ function flatten(xs) {
 }
 
 function fetchBookmarks(callback) {
+  console.log('Looking for: ' + query + ' in bookmarks');
+
   chrome.bookmarks.getTree(function(bookmarks) {
-    callback(flatten(bookmarks));
+    res = flatten(bookmarks);
+    console.log(res.length + " results found")
+    callback(res);
   })
 }
 
-// Triggers when a message is passed
+/*
+  TODO:
+  - Add a listener that handles a bookmark query
+  - Return only the subset of data that matches the query
+*/
+
+// Triggers when a message is received
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (request.bookmarks == "all")
+    if (request.bookmarks)
+      query = new RegExp(request.bookmarks);
       fetchBookmarks(sendResponse);
-    return true;
+    return true; // Mandatory (cf. onMessage doc)
 });
