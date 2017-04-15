@@ -63,17 +63,22 @@ function fetchBookmarks(callback) {
   })
 }
 
-/*
-  TODO:
-  - Add a listener that handles a bookmark query
-  - Return only the subset of data that matches the query
-*/
+// Prepares query string for regexp
+function prepareQueryString(queryStr) {
+  // Strip spaces for regexp
+  queryStr = queryStr.replace(/\s+/g, '.*');
+  // Add matcher for any number of characters
+  // between each character of the query
+  // queryStr = queryStr.split('').map(function(x) { return x + '.*' }).join('');
+  return queryStr;
+}
 
 // Triggers when a message is received
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.bookmarks)
-      query = new RegExp(request.bookmarks);
+      var strQuery = prepareQueryString(request.bookmarks);
+      query = new RegExp(strQuery, 'i'); // Case insensitive
       fetchBookmarks(sendResponse);
     return true; // Mandatory (cf. onMessage doc)
 });
