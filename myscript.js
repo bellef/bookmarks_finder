@@ -7,7 +7,8 @@ function queryBookmarks() {
     var htmlToInsert = "<div id='bm-res'>";
 
     bookmarks.forEach(function(bookmark) {
-      var title = bookmark['title'];
+      // Title equals url if title is empty
+      var title = bookmark['title'].length ? bookmark['title'] : bookmark['url'];
       var url = bookmark['url'];
 
       htmlToInsert += "<ul class='bm'>" +
