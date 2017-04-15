@@ -1,17 +1,16 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
-  "version": "1.0",
+  "name": "Bookmarks in google results",
+  "description": "This extension show the bookmarks that match your search keywords at the top of the Google results",
+  "version": "0.1",
 
   "background": {
     "scripts": ["background.js"]
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.fr/*"],
-      // "css": ["mystyles.css"],
+      "matches": ["<all_urls>"],
       "js": [
         "jquery.min.js",
         "jquery.ba-throttle-debounce.min.js", // https://github.com/cowboy/jquery-throttle-debounce
@@ -20,7 +19,8 @@
     }
   ],
   "permissions": [
-    "tabs", "https://www.google.fr/*"
+    "tabs",
+    "https://www.google.fr/*"
   ],
   "browser_action": {
     "default_icon": "icon.png"
