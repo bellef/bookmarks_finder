@@ -68,6 +68,8 @@ function queryBookmarks() {
 // Because we need to be sure
 // That the search bar input is accessible
 $(document).ready(function() {
+  // Tenter de faire un while $("#lst-ib") == undefined,
+  // on check la valeur
   queryBookmarks(); // First call when page loads
 
   $("#lst-ib").on(
@@ -78,20 +80,3 @@ $(document).ready(function() {
     )
   );
 });
-
-// function buildBookmarkElement(title, url) {
-//   var html = '';
-//   html += "<ul class='bookmark'>" +
-//           "<li><a href='" + url + "'>" + title + "</a></li>" +
-//           "</ul>";
-//   return html;
-// }
-
-
-// $( document ).ready(function() {
-//     console.log( "document loaded" );
-// });
-
-// $( window ).on( "load", function() {
-//     console.log( "window loaded" );
-// });

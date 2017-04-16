@@ -5,6 +5,9 @@
   "description": "This extension show the bookmarks that match your search keywords at the top of the Google results",
   "version": "0.1",
 
+  "icons": { "16": "images/icon16.png",
+           "48": "images/icon48.png",
+          "128": "images/icon128.png" },
   "background": {
     "scripts": ["background.js"]
   },
@@ -23,7 +26,7 @@
     "https://www.google.fr/*"
   ],
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "images/icon19.png"
   },
   "permissions": [
     "activeTab",
