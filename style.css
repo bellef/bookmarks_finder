@@ -1,0 +1,20 @@
+#bookmarks {
+  max-height: 300px;
+  overflow: auto;
+}
+#bookmarks .bm-elem {
+  background-color: #4285f4;
+  border-radius: 2px;
+  margin-bottom: 3px;
+  padding: 5px;
+}
+#bookmarks .bm-elem a {
+  text-decoration: none !important;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+#bookmarks .bm-elem a .bm-title {
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+}

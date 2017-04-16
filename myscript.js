@@ -1,7 +1,7 @@
 function buildBookmarkElement(title, url) {
   var html = '';
   html += "<div class='bm-elem'>" +
-          "<a href='" + url + "' style='text-decoration: none;'>" +
+          "<a href='" + url + "'>" +
             "<span class='bm-title'>" + title + "</span><br>" +
             "<span class='bm-url'>" + url.substring(0, 99) +
           "</span></a>" +
