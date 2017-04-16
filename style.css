@@ -18,3 +18,6 @@
   font-size: 17px;
   font-weight: bold;
 }
+#bookmarks .bm-elem .bm-highlight {
+  text-decoration: underline;
+}
