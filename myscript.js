@@ -1,39 +1,9 @@
-function bookmarksCss() {
-  return "style='" +
-          "max-height: 300px;" +
-          "overflow: auto;" +
-          "'";
-}
-function bookmarkCss() {
-  return "style='" +
-          "background-color: #4285f4;" +
-          "border-radius: 2px;" +
-          "margin-bottom: 10px;" +
-          "padding: 5px;" +
-          "'";
-}
-
-function titleCss() {
-  return "style='" +
-        "font-size: 17px;" +
-        "font-weight: bold;" +
-        "color: #fff;" +
-        "'";
-}
-
-function linkCss() {
-  return "style='" +
-        "font-size: 10px;" +
-        "color: rgba(255, 255, 255, 0.7);" +
-        "'";
-}
-
 function buildBookmarkElement(title, url) {
   var html = '';
-  html += "<div " + bookmarkCss() + ">" +
+  html += "<div class='bm-elem'>" +
           "<a href='" + url + "' style='text-decoration: none;'>" +
-            "<span " + titleCss() + ">" + title + "</span><br>" +
-            "<span " + linkCss() + ">" + url.substring(0, 99) +
+            "<span class='bm-title'>" + title + "</span><br>" +
+            "<span class='bm-url'>" + url.substring(0, 99) +
           "</span></a>" +
           "</div>";
   return html;
@@ -46,7 +16,7 @@ function queryBookmarks() {
   console.log("Querying " + query)
 
   chrome.runtime.sendMessage({bookmarks: query}, function(bookmarks) {
-    var htmlToInsert = "<div id='bookmarks' " + bookmarksCss() + ">";
+    var htmlToInsert = "<div id='bookmarks'>";
 
     bookmarks.forEach(function(bookmark) {
       // Title equals url if title is empty
@@ -68,8 +38,6 @@ function queryBookmarks() {
 // Because we need to be sure
 // That the search bar input is accessible
 $(document).ready(function() {
-  // Tenter de faire un while $("#lst-ib") == undefined,
-  // on check la valeur
   queryBookmarks(); // First call when page loads
 
   $("#lst-ib").on(
