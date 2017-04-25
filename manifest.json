@@ -17,20 +17,18 @@
       "css": ["style.css"],
       "js": [
         "jquery.min.js",
-        "jquery.ba-throttle-debounce.min.js", // https://github.com/cowboy/jquery-throttle-debounce
+        "jquery.ba-throttle-debounce.min.js",
         "myscript.js"
       ]
     }
   ],
   "permissions": [
     "tabs",
-    "https://www.google.fr/*"
+    "https://www.google.fr/*",
+    "activeTab",
+    "bookmarks"
   ],
   "browser_action": {
     "default_icon": "images/icon19.png"
-  },
-  "permissions": [
-    "activeTab",
-    "bookmarks"
-  ]
+  }
 }
