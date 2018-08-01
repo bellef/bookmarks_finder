@@ -35,7 +35,6 @@ function buildBookmarkElement(title, url, query) {
 // Ask background script to query on bookmarks
 function queryBookmarks() {
   var query = $("#lst-ib").val();
-  console.log("Querying " + query)
 
   chrome.runtime.sendMessage({bookmarks: query}, function(bookmarks) {
     var htmlToInsert = "<div id='bookmarks'>";
@@ -60,6 +59,10 @@ function queryBookmarks() {
 // Because we need to be sure
 // That the search bar input is accessible
 $(document).ready(function() {
+  // Break execution if we're not on google.*
+  if (!window.location.hostname.match(/www\.google\..*/))
+    return -1;
+
   queryBookmarks(); // First call when page loads
 
   $("#lst-ib").on(

@@ -54,11 +54,8 @@ function flatten(xs) {
 }
 
 function fetchBookmarks(callback) {
-  console.log('Looking for: ' + query + ' in bookmarks');
-
   chrome.bookmarks.getTree(function(bookmarks) {
     res = flatten(bookmarks);
-    console.log(res.length + " results found")
     callback(res);
   })
 }

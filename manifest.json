@@ -3,7 +3,7 @@
 
   "name": "Bookmarks in google results",
   "description": "This extension show the bookmarks that match your search keywords at the top of the Google results",
-  "version": "0.1",
+  "version": "0.3",
 
   "icons": { "16": "images/icon16.png",
            "48": "images/icon48.png",
@@ -24,7 +24,7 @@
   ],
   "permissions": [
     "tabs",
-    "https://www.google.fr/*",
+    "https://*/*",
     "activeTab",
     "bookmarks"
   ],
